@@ -8,7 +8,7 @@ const projectsData = [
     technologies: ["Python", "numpy", "Logistic regression"],
     status: "Live",
     liveDemo: "#",
-    github: "#"
+    github: "https://github.com/harsha1482004/Main-Project.git"
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const projectsData = [
     technologies: ["ReactJS", "ExpressJS", "MongoDB"],
     status: "Live",
     liveDemo: "#",
-    github: "#"
+    github: "https://github.com/harsha1482004/MERN_Stu_Feb_May26Mys.git"
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const projectsData = [
     technologies: ["HTML", "Tailwind CSS", "JavaScript"],
     status: "Live",
     liveDemo: "#",
-    github: "#"
+    github: "https://github.com/harsha1482004/My_profile.git"
   },
   {
     id: 4,
@@ -52,6 +52,6 @@ const projectsData = [
     technologies: ["python", "SQL"],
     status: "live",
     liveDemo: "#",
-    github: "#"
+    github: "https://github.com/harsha1482004/music-concert-ticket-booking.git"
   }
 ];
