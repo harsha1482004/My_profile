@@ -612,37 +612,257 @@
   <!-- ══════════════════════════════════════════ -->
 
   <button id="modal-trigger"
-    class="fixed bottom-8 right-8 w-14 h-14 text-white rounded-full shadow-2xl flex items-center justify-center text-xl font-bold"
-    style="background: linear-gradient(135deg, #ef4444, #1e3a5f); z-index: 1000; border: none; cursor: pointer;">
+    class="fixed bottom-8 right-8 w-16 h-16 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-3xl"
+    style="background: linear-gradient(135deg, #ef4444, #1e3a5f); z-index: 1000; border: none; cursor: pointer; animation: pulse 2s infinite;">
     ☏
   </button>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+      font-family: var(--font-display);
+      letter-spacing: 0.03em;
+    }
+
+    .form-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--muted);
+      font-size: 16px;
+      pointer-events: none;
+      transition: color 0.2s;
+    }
+
+    .form-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px 12px 40px;
+      font-size: 14px;
+      font-family: var(--font-body);
+      background: var(--white);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      background: rgba(239, 68, 68, 0.02);
+    }
+
+    .form-input:focus ~ .form-input-icon {
+      color: #ef4444;
+    }
+
+    .form-textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-family: var(--font-body);
+      background: var(--white);
+      min-height: 120px;
+      resize: vertical;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-textarea:focus {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      background: rgba(239, 68, 68, 0.02);
+    }
+
+    .form-message {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-top: 1rem;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    .form-message.show { display: block; }
+
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border-left: 3px solid #ef4444;
+    }
+
+    .form-message.success {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border-left: 3px solid #22c55e;
+    }
+
+    .form-message.info {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      border-left: 3px solid #3b82f6;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 1.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-cancel, .btn-submit {
+      flex: 1;
+      font-weight: 700;
+      font-family: var(--font-display);
+      padding: 13px 20px;
+      border-radius: 11px;
+      border: none;
+      cursor: pointer;
+      font-size: 13.5px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-cancel {
+      background: var(--white);
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-cancel:hover {
+      background: var(--border);
+      transform: translateY(-2px);
+    }
+
+    .btn-cancel:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #ef4444, #1e3a5f);
+      color: white;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+
+    html.dark-mode .form-input,
+    html.dark-mode .form-textarea,
+    html.dark-mode .btn-cancel {
+      background: #1e293b !important;
+      color: #e2e8f0;
+      border-color: #334155 !important;
+    }
+
+    html.dark-mode .form-input::placeholder,
+    html.dark-mode .form-textarea::placeholder {
+      color: #64748b;
+    }
+
+    html.dark-mode .form-label {
+      color: #e2e8f0;
+    }
+
+    html.dark-mode .btn-cancel:hover {
+      background: #334155 !important;
+    }
+  </style>
 
   <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-md">
     <div class="flex items-center justify-center min-h-screen p-4">
       <div id="modal-content"
-        class="bg-white w-full max-w-md rounded-2xl shadow-2xl scale-95 opacity-0 transition-all duration-300">
+        class="bg-white w-full max-w-md rounded shadow-2xl scale-95 opacity-0 transition-all duration-300 overflow-hidden">
 
-        <div class="sticky top-0 border-b p-8 pt-10 bg-white" style="border-radius: 16px 16px 0 0; border-color: var(--border);">
-          <h3 class="text-xl font-bold">Contact Me</h3>
-          <button id="modal-close" class="absolute top-5 right-5 text-2xl font-bold" style="background:none; border:none; cursor:pointer; color: var(--muted);">×</button>
+        <!-- Modal Header -->
+        <div class="bg-gradient-to-r from-red-500 to-blue-900 p-6 text-white relative">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+            <span style="font-size: 24px;">💬</span>
+            <h3 class="text-2xl font-bold">Get In Touch</h3>
+          </div>
+          <p style="font-size: 13px; opacity: 0.9; margin-top: 6px;">I'd love to hear from you. Send me a message!</p>
+          <button id="modal-close" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition" style="background:none; border:none; cursor:pointer; color: white; font-size: 24px;">
+            ✕
+          </button>
         </div>
 
-        <form id="contact-form" class="p-8 space-y-4">
-          <input id="contact-name"  type="text"  placeholder="Your name"
-            style="width:100%; border:1.5px solid var(--border); border-radius:10px; padding:12px 16px; font-size:14px; font-family: var(--font-body); outline:none;">
-          <input id="contact-email" type="email" placeholder="email@website.com"
-            style="width:100%; border:1.5px solid var(--border); border-radius:10px; padding:12px 16px; font-size:14px; font-family: var(--font-body); outline:none;">
-          <p id="form-message" class="text-sm text-red-500"></p>
-          <div class="flex flex-col sm:flex-row gap-3 pt-2">
-            <button type="button" id="form-cancel"
-              style="flex:1; font-weight:700; font-family: var(--font-display); padding:13px 20px; border-radius:10px; border:1.5px solid var(--border); background:var(--white); cursor:pointer; font-size:13px;">
-              Cancel
-            </button>
-            <button type="submit"
-              style="flex:1; font-weight:700; font-family: var(--font-display); padding:13px 20px; border-radius:10px; border:none; background: linear-gradient(135deg, #ef4444, #1e3a5f); color:#fff; cursor:pointer; font-size:13px;">
-              Submit
-            </button>
+        <!-- Modal Body -->
+        <form id="contact-form" class="p-8">
+          
+          <!-- Name Field -->
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <div class="form-input-wrapper">
+              <input id="contact-name" type="text" placeholder="Your Name" class="form-input">
+              <span class="form-input-icon">👤</span>
+            </div>
           </div>
+
+          <!-- Email Field -->
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <div class="form-input-wrapper">
+              <input id="contact-email" type="email" placeholder="you@example.com" class="form-input">
+              <span class="form-input-icon">✉️</span>
+            </div>
+          </div>
+
+          <!-- Message Field -->
+          <div class="form-group">
+            <label class="form-label">Your Message</label>
+            <textarea id="contact-message" placeholder="Tell me about your project or just say hello..." class="form-textarea"></textarea>
+          </div>
+
+          <!-- Status Message -->
+          <p id="form-message" class="form-message"></p>
+
+          <!-- Action Buttons -->
+          <div class="form-actions">
+            <button type="button" id="form-cancel" class="btn-cancel">Cancel</button>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </div>
+
         </form>
 
       </div>
@@ -653,6 +873,7 @@
   <!-- SCRIPTS                                   -->
   <!-- theme-toggle MUST be first                -->
   <!-- ══════════════════════════════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="js/features/theme-toggle.js"></script>
   <script src="./js/features/contact-validation.js"></script>
   <script src="js/data/projects.js"></script>
